@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmlcgam5ahcod"]
+
+[ext_resource type="PackedScene" uid="uid://daabcldeo8ram" path="res://tower.tscn" id="1_6uqi0"]
+[ext_resource type="PackedScene" uid="uid://cqkphatid0cqt" path="res://disc1.tscn" id="2_ppyta"]
+[ext_resource type="PackedScene" uid="uid://djuakuhllb7sg" path="res://disc2.tscn" id="3_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://rr0i1kw2p7ys" path="res://disc3.tscn" id="4_ppyta"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Tower3" parent="." instance=ExtResource("1_6uqi0")]
+position = Vector2(887, 464)
+is_goal = true
+
+[node name="Tower" parent="." instance=ExtResource("1_6uqi0")]
+position = Vector2(183, 465)
+holding_discs = [1, 2, 3]
+
+[node name="Tower2" parent="." instance=ExtResource("1_6uqi0")]
+position = Vector2(564, 466)
+
+[node name="Disc1" parent="." node_paths=PackedStringArray("linked_tower") instance=ExtResource("2_ppyta")]
+position = Vector2(180, 427)
+allowed_discs_under = []
+disc_height = 40
+disc_offset = -3
+linked_tower = NodePath("../Tower")
+
+[node name="Disc2" parent="." node_paths=PackedStringArray("linked_tower") instance=ExtResource("3_ykrsh")]
+position = Vector2(183, 389)
+linked_tower = NodePath("../Tower")
+
+[node name="Disc3" parent="." node_paths=PackedStringArray("linked_tower") instance=ExtResource("4_ppyta")]
+position = Vector2(178, 362)
+disc_height = 35
+linked_tower = NodePath("../Tower")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://daabcldeo8ram"]
+
+[ext_resource type="Script" uid="uid://dc2hrv7jnvddl" path="res://tower.gd" id="1_stebd"]
+[ext_resource type="Texture2D" uid="uid://c3h1j8ak3rqwk" path="res://art_assets/base.png" id="1_vedim"]
+[ext_resource type="Texture2D" uid="uid://c5snx57e5thgq" path="res://art_assets/tower.png" id="2_stebd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vedim"]
+size = Vector2(15, 307)
+
+[node name="Tower" type="Area2D"]
+script = ExtResource("1_stebd")
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("1_vedim")
+
+[node name="Pole" type="Sprite2D" parent="."]
+position = Vector2(-1, -171)
+texture = ExtResource("2_stebd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -171.5)
+shape = SubResource("RectangleShape2D_vedim")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
