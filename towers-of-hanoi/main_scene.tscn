@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc13x2b8k1p4a"]
+
+[ext_resource type="PackedScene" uid="uid://daabcldeo8ram" path="res://tower.tscn" id="1_0f027"]
+[ext_resource type="PackedScene" uid="uid://cqkphatid0cqt" path="res://disc1.tscn" id="2_d5x1h"]
+[ext_resource type="PackedScene" uid="uid://djuakuhllb7sg" path="res://disc2.tscn" id="3_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://rr0i1kw2p7ys" path="res://disc3.tscn" id="4_hq1ik"]
+[ext_resource type="PackedScene" uid="uid://74og2tndb2hk" path="res://hud.tscn" id="5_8mm7a"]
+
+[node name="MainScene" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.564706, 0.541176, 1, 1)
+
+[node name="Tower1" parent="." instance=ExtResource("1_0f027")]
+position = Vector2(167, 618)
+holding_discs = [1, 2, 3]
+
+[node name="Tower2" parent="." instance=ExtResource("1_0f027")]
+position = Vector2(545, 618)
+
+[node name="Tower3" parent="." instance=ExtResource("1_0f027")]
+position = Vector2(940, 618)
+is_goal = true
+
+[node name="Disc1" parent="." node_paths=PackedStringArray("linked_tower") instance=ExtResource("2_d5x1h")]
+position = Vector2(164, 578)
+linked_tower = NodePath("../Tower1")
+
+[node name="Disc2" parent="." node_paths=PackedStringArray("linked_tower") instance=ExtResource("3_8mm7a")]
+position = Vector2(168, 538)
+linked_tower = NodePath("../Tower1")
+
+[node name="Disc3" parent="." node_paths=PackedStringArray("linked_tower") instance=ExtResource("4_hq1ik")]
+position = Vector2(163, 513)
+disc_height = 35
+linked_tower = NodePath("../Tower1")
+
+[node name="HUD" parent="." instance=ExtResource("5_8mm7a")]
+
+[connection signal="game_won" from="Tower3" to="HUD" method="_on_tower_3_game_won"]
