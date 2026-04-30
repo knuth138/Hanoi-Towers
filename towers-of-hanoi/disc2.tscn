@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://djuakuhllb7sg"]
+
+[ext_resource type="PackedScene" uid="uid://cqkphatid0cqt" path="res://disc1.tscn" id="1_gkruk"]
+[ext_resource type="Script" uid="uid://dmoms7qnb748t" path="res://disc2.gd" id="2_hetpk"]
+[ext_resource type="Texture2D" uid="uid://bsqwkhxn1a76b" path="res://art_assets/disc2_linked.png" id="2_rlxfx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hetpk"]
+radius = 21.0
+height = 170.0
+
+[node name="Disc2" instance=ExtResource("1_gkruk")]
+script = ExtResource("2_hetpk")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_rlxfx")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_hetpk")
